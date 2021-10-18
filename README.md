@@ -53,5 +53,5 @@ mvn springboot:stop
 - [MIT License](https://choosealicense.com/licenses/mit/)
 - [AdminLTE License](https://adminlte.io/docs/2.4/license)
 
-## Authors
+## Author
 - [Bondo Pangaji](https://github.com/bondopangaji)
