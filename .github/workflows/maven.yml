@@ -38,6 +38,3 @@ jobs:
     
     - name: Step 5 - Install with Maven
       run: mvn install
-    
-    - name: Step 6 - Run App with Maven
-      run: mvn spring-boot:run
