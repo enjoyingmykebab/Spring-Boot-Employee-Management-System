@@ -35,11 +35,11 @@ mvn clean install
 ```
 Run the project:
 ```sh
-mvn springboot:run
+mvn spring-boot:run
 ```
 Stop the project:
 ```sh
-mvn springboot:stop
+mvn spring-boot:stop
 ```
 ## User Credentials
 #### Admin
