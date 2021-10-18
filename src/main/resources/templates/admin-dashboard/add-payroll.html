@@ -1,0 +1,185 @@
+<!--
+The MIT License
+
+Copyright 2021 bondopangaji
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/includes/base-admin :: head"></head>
+
+<body class="hold-transition sidebar-mini">
+	<!-- Site wrapper -->
+	<div class="wrapper">
+
+		<!-- Preloader -->
+		<div th:replace="/includes/base-admin :: preloader"></div>
+
+		<!-- Navbar -->
+		<nav th:replace="/includes/base-admin :: navbar"></nav>
+
+		<!-- Main Sidebar Container -->
+		<aside th:replace="/includes/base-admin :: sidebar"></aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>Add Payroll</h1>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a href="#">Home</a></li>
+								<li class="breadcrumb-item">Admin Dashboard</li>
+								<li class="breadcrumb-item active">Add Payroll</li>
+							</ol>
+						</div>
+					</div>
+				</div><!-- /.container-fluid -->
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card card-primary">
+							<div class="card-header">
+								<h3 class="card-title">General</h3>
+							</div>
+							<form method="POST" th:action="@{/admin-dashboard/add-payroll/saved}" th:object="${payroll}"
+								class="card-body row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label>Select Employee</label>
+										<select th:field="*{employee}" class="form-control">
+											<th:block th:each="emp : ${employee}">
+												<option th:text="${emp.fullName}" th:value="${emp.employeeId}"></option>
+											</th:block>
+										</select>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label>Payroll Date</label>
+										<div class="input-group">
+											<input th:field="*{payrollDate}" type="text" class="form-control"
+												data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy"
+												data-mask>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="hourlyRate">Hourly Rate</label>
+										<input th:field="*{hourlyRate}" class="form-control"
+											placeholder="input hourly rate here" type="number" required>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="annualSalary">Annual Salary</label>
+										<input th:field="*{annualSalary}" class="form-control"
+											placeholder="input annual salary here" type="number" required>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="tax">Tax</label>
+										<input th:field="*{tax}" class="form-control"
+											placeholder="input hourly rate here" type="number" required>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="netSalary">Net Salary</label>
+										<input th:field="*{netSalary}" class="form-control"
+											placeholder="input hourly rate here" type="number" required>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="col-12">
+										<a href="#" class="btn btn-secondary">Cancel</a>
+										<input type="submit" value="Create New Payroll"
+											class="btn btn-success float-right">
+									</div>
+								</div>
+							</form>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+				</div>
+
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<footer th:replace="/includes/base-admin :: footer"></footer>
+
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- jQuery -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Select2 -->
+	<script src="../../plugins/select2/js/select2.full.min.js"></script>
+	<!-- Bootstrap4 Duallistbox -->
+	<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+	<!-- InputMask -->
+	<script src="../../plugins/moment/moment.min.js"></script>
+	<script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
+	<!-- date-range-picker -->
+	<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+	<!-- Bootstrap Switch -->
+	<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../../dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="../../dist/js/demo.js"></script>
+	<!-- Page specific script -->
+	<script>
+		$(function () {
+			//Initialize Select2 Elements
+			$('.select2').select2()
+
+			//Initialize Select2 Elements
+			$('.select2bs4').select2({
+				theme: 'bootstrap4'
+			})
+
+			//Datemask dd/mm/yyyy
+			$('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'})
+			//Datemask2 mm/dd/yyyy
+			$('#datemask2').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'})
+			//Money Euro
+			$('[data-mask]').inputmask()
+		})
+	</script>
+</body>
+
+</html>

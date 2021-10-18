@@ -1,0 +1,151 @@
+<!--
+The MIT License
+
+Copyright 2021 bondopangaji
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/includes/base-admin :: head"></head>
+
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+		<!-- Preloader -->
+		<div th:replace="/includes/base-admin :: preloader"></div>
+
+		<!-- Navbar -->
+		<nav th:replace="/includes/base-admin :: navbar"></nav>
+
+		<!-- Main Sidebar Container -->
+		<aside th:replace="/includes/base-admin :: sidebar"></aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>Employee Management</h1>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item">Home</a></li>
+								<li class="breadcrumb-item">Admin Dashboard</a></li>
+								<li class="breadcrumb-item active">Employee List</li>
+							</ol>
+						</div>
+					</div>
+				</div><!-- /.container-fluid -->
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">Employee List</h3>
+									<div class="card-tools">
+										<div class="input-group input-group-sm" style="width: 150px;">
+										</div>
+									</div>
+								</div>
+								<!-- /.card-header -->
+								<div class="card-body table-responsive p-0" style="height: 300px;">
+									<table class="table table-head-fixed text-nowrap">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Role ID</th>
+												<th>Full Name</th>
+												<th>Birth Date</th>
+												<th>Home Address</th>
+												<th>Domicile Address</th>
+												<th>Phone Number</th>
+												<th>Email</th>
+												<th>Password</th>
+												<th>Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="employee:${list}">
+												<td th:text="${employee.employeeId}"></td>
+												<td th:text="${employee.roleId}"></td>
+												<td th:text="${employee.fullName}"></td>
+												<td th:text="${employee.birthDate}"></td>
+												<td th:text="${employee.homeAddress}"></td>
+												<td th:text="${employee.domicileAddress}"></td>
+												<td th:text="${employee.phoneNumber}"></td>
+												<td th:text="${employee.email}"></td>
+												<td th:text="${employee.password}"></td>
+												<td class="project-actions text-right" style="display:inline-flex">
+													<form
+														th:action="@{/admin-dashboard/edit-employee/{id}(id=${employee.employeeId})}"
+														style="padding-right: 0.25rem;">
+														<button class="btn btn-info btn-sm">
+															<i class="fas fa-pencil-alt"></i>
+															Edit
+														</button>
+													</form>
+													<form onSubmit="return confirm('Are you sure?')"
+														th:action="@{/admin-dashboard/employee-list/{employeeId}/deleted(employeeId=${employee.employeeId})}"
+														method="POST">
+														<button class="btn btn-danger btn-sm">
+															<i class="fas fa-trash"></i>
+															Delete
+														</button>
+													</form>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!-- /.card-body -->
+							</div>
+							<!-- /.card -->
+						</div>
+					</div>
+					<!-- /.row -->
+				</div><!-- /.container-fluid -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<footer th:replace="/includes/base-admin :: footer"></footer>
+
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- jQuery -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../../dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="../../dist/js/demo.js"></script>
+</body>
+
+</html>

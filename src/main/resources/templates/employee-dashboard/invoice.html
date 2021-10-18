@@ -1,0 +1,203 @@
+<!--
+The MIT License
+
+Copyright 2021 bondopangaji
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/includes/base-employee :: head"></head>
+
+<body class="hold-transition sidebar-mini">
+
+	<div class="wrapper">
+		<!-- Navbar -->
+		<nav th:replace="/includes/base-employee :: navbar"> </nav>
+		<!-- /.navbar -->
+
+		<!-- Main Sidebar Container -->
+		<aside th:replace="/includes/base-employee :: sidebar"> </aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>Invoice</h1>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item">Home</li>
+								<li class="breadcrumb-item">Employee Dashboard</li>
+								<li class="breadcrumb-item">My Payroll</li>
+								<li class="breadcrumb-item active">Invoice</li>
+							</ol>
+						</div>
+					</div>
+				</div><!-- /.container-fluid -->
+			</section>
+
+			<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<!-- Main content -->
+							<div class="invoice p-3 mb-3">
+								<!-- title row -->
+								<div class="row">
+									<div class="col-12">
+										<h4>
+											<i class="fas fa-globe"></i> BONAN, Inc.
+											<small th:text="*{payroll.payrollDate}" class="float-right"></small>
+										</h4>
+									</div>
+									<!-- /.col -->
+								</div>
+								<!-- info row -->
+								<div class="row invoice-info">
+									<div class="col-sm-8 invoice-col">
+										From
+										<address>
+											<strong>BONAN, Inc.</strong><br>
+											Jalan Jend. Sudirman, Rt 01/01<br>
+											Menara Sudirman Kav. 01, 12830<br>
+											Phone: (62) 88-8888-8888<br>
+											Email: company@bonan.com
+										</address>
+									</div>
+
+									<!-- /.col -->
+									<div class="col-sm-4 invoice-col">
+										<b>Invoice:</b> <i th:text="*{payroll.payrollId}"></i><br>
+										<br>
+										<b>Employee ID:</b> <i th:text="*{payroll.employee.employeeId}"></i> <br>
+										<b>Payment Date:</b> <i th:text="*{payroll.payrollDate}"></i><br>
+									</div>
+									<!-- /.col -->
+								</div>
+								<!-- /.row -->
+
+								<!-- Table row -->
+								<div class="row">
+									<div class="col-12 table-responsive">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th>No</th>
+													<th>Description</th>
+													<th>Payroll</th>
+													<th>Date</th>
+													<th>Subtotal</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="payroll:${payroll}">
+													<td>1</td>
+													<td>Annual Salary</td>
+													<td th:text="*{payroll.annualSalary}"> </td>
+													<td th:text="*{payroll.payrollDate}"></td>
+													<td th:text="*{payroll.annualSalary}"></td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>Tax</td>
+													<td th:text="*{payroll.tax}"></td>
+													<td th:text="*{payroll.payrollDate}"></td>
+													<td th:text="*{payroll.tax}"></td>
+												</tr>
+												<tr>
+													<td>3</td>
+													<td>Net Salary</td>
+													<td th:text="*{payroll.netSalary}"></td>
+													<td th:text="*{payroll.payrollDate}"></td>
+													<td th:text="*{payroll.netSalary}"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- /.col -->
+								</div>
+								<!-- /.row -->
+
+								<div class="row">
+									<!-- accepted payments column -->
+									<div class="col-6">
+										<p class="lead">Payment Methods:</p>
+										<img src="../../dist/img/credit/visa.png" alt="Visa">
+										<img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
+									</div>
+									<!-- /.col -->
+									<div class="col-6">
+										<p>Payroll Date:</p>
+										<p th:text="*{payroll.payrollDate}" class="lead"></p>
+
+										<div class="table-responsive">
+											<table class="table">
+												<tr>
+													<th>Total:</th>
+													<td th:text="*{payroll.netSalary}"></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<!-- /.col -->
+								</div>
+								<!-- /.row -->
+
+								<!-- this row will not appear when printing -->
+								<div class="row no-print">
+									<div class="col-12">
+										<button onclick="openPrint()" rel="noopener" target="_blank"
+											class="float-right btn btn-info"><i class="fas fa-print"></i> Print</button>
+									</div>
+								</div>
+							</div>
+							<!-- /.invoice -->
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div><!-- /.container-fluid -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+		<footer th:replace="/includes/base-employee :: footer"></footer>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- jQuery -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../../dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="../../dist/js/demo.js"></script>
+	<script>
+		function openPrint() {
+			window.addEventListener("load", window.print());
+		}
+	</script>
+</body>
+
+</html>
