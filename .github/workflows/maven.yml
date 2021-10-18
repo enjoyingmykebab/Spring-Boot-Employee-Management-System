@@ -40,4 +40,4 @@ jobs:
       run: mvn install
     
     - name: Step 6 - Run App with Maven
-      run: mvn spring
+      run: mvn spring-boot:run
