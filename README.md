@@ -9,7 +9,7 @@ Bondo Pangaji EMS is a web application created to manage and maintain employee d
 ## Features
 - Manage employee
 - Manage payroll
-- Payroll Invoice
+- Payroll invoice
 
 ## Technology Stack
 This project a number of technology to work properly
