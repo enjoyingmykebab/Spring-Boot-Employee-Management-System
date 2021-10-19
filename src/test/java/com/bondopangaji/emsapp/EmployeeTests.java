@@ -29,11 +29,13 @@ package com.bondopangaji.emsapp;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.annotation.Rollback;
 
 import com.bondopangaji.emsapp.models.Employee;
@@ -45,7 +47,9 @@ import com.bondopangaji.emsapp.services.EmployeeService;
  *
  */
 
-@SpringBootTest
+
+@DisplayName("Test case for Employee object")
+@ExtendWith(MockitoExtension.class)
 public class EmployeeTests {
 	
 	@Mock
@@ -82,6 +86,44 @@ public class EmployeeTests {
 	@Test
 	@Order(2)
 	@Rollback(value = false)
+	@SuppressWarnings("null")
+	void NewAdminWithEmptyEmployeeId() throws NullPointerException {
+		Assertions.assertThrows(NullPointerException.class, () -> {
+			Employee expectedEmployee = new Employee();
+			expectedEmployee.setEmployeeId((Long) null);
+			expectedEmployee.setRoleId(1);
+			expectedEmployee.setFullName("");
+			expectedEmployee.setBirthDate("05-11-2001");
+			expectedEmployee.setHomeAddress("Indonesia");
+			expectedEmployee.setDomicileAddress("Indonesia");
+			expectedEmployee.setPhoneNumber("62");
+			expectedEmployee.setEmail("dummy.admin@bondo.com");
+			expectedEmployee.setPassword("password");
+		});
+	}
+	
+	@Test
+	@Order(3)
+	@Rollback(value = false)
+	@SuppressWarnings("null")
+	void NewAdminWithEmptyRoleId() throws NullPointerException {
+		Assertions.assertThrows(NullPointerException.class, () -> {
+			Employee expectedEmployee = new Employee();
+			expectedEmployee.setEmployeeId(1);
+			expectedEmployee.setRoleId((Integer) null);
+			expectedEmployee.setFullName("");
+			expectedEmployee.setBirthDate("05-11-2001");
+			expectedEmployee.setHomeAddress("Indonesia");
+			expectedEmployee.setDomicileAddress("Indonesia");
+			expectedEmployee.setPhoneNumber("62");
+			expectedEmployee.setEmail("dummy.admin@bondo.com");
+			expectedEmployee.setPassword("password");
+		});
+	}
+	
+	@Test
+	@Order(4)
+	@Rollback(value = false)
 	void NewAdminWithEmptyFullName() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
@@ -91,7 +133,7 @@ public class EmployeeTests {
 			expectedEmployee.setEmployeeId(101);
 			expectedEmployee.setRoleId(1);
 			expectedEmployee.setFullName("");
-			expectedEmployee.setBirthDate("05-11-00");
+			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("Indonesia");
 			expectedEmployee.setDomicileAddress("Indonesia");
 			expectedEmployee.setPhoneNumber("62");
@@ -101,16 +143,16 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(3)
+	@Order(5)
 	@Rollback(value = false)
 	void NewAdminWithEmptyBirthDate() throws Exception {
 		Throwable e = null;
@@ -131,16 +173,16 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(4)
+	@Order(6)
 	@Rollback(value = false)
 	void NewAdmineWithEmptyHomeAddress() throws Exception {
 		Throwable e = null;
@@ -151,7 +193,7 @@ public class EmployeeTests {
 			expectedEmployee.setEmployeeId(101);
 			expectedEmployee.setRoleId(1);
 			expectedEmployee.setFullName("Dummy Admin");
-			expectedEmployee.setBirthDate("05-11-00");
+			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("");
 			expectedEmployee.setDomicileAddress("Indonesia");
 			expectedEmployee.setPhoneNumber("62");
@@ -161,23 +203,23 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(5)
+	@Order(7)
 	@Rollback(value = false)
 	void NewAdminWithEmptyDomicileAddress() throws Exception {
 		Employee expectedEmployee = new Employee();
 		expectedEmployee.setEmployeeId(101);
 		expectedEmployee.setRoleId(1);
-		expectedEmployee.setFullName("Dummy Employee");
-		expectedEmployee.setBirthDate("05-11-00");
+		expectedEmployee.setFullName("Dummy Admin");
+		expectedEmployee.setBirthDate("05-11-2001");
 		expectedEmployee.setHomeAddress("Indonesia");
 		expectedEmployee.setDomicileAddress("");
 		expectedEmployee.setPhoneNumber("62");
@@ -198,7 +240,7 @@ public class EmployeeTests {
 	}
 	
 	@Test
-	@Order(6)
+	@Order(8)
 	@Rollback(value = false)
 	void NewAdminWithEmptyPhoneNumber() throws Exception {
 		Throwable e = null;
@@ -208,8 +250,8 @@ public class EmployeeTests {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId(101);
 			expectedEmployee.setRoleId(1);
-			expectedEmployee.setFullName("Dummy Employee");
-			expectedEmployee.setBirthDate("05-11-00");
+			expectedEmployee.setFullName("Dummy Admin");
+			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("Indonesia");
 			expectedEmployee.setDomicileAddress("Indonesia");
 			expectedEmployee.setPhoneNumber("");
@@ -219,16 +261,16 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(7)
+	@Order(9)
 	@Rollback(value = false)
 	void NewAdminWithEmptyEmail() throws Exception {
 		Throwable e = null;
@@ -238,8 +280,8 @@ public class EmployeeTests {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId(101);
 			expectedEmployee.setRoleId(1);
-			expectedEmployee.setFullName("Dummy Employee");
-			expectedEmployee.setBirthDate("05-11-00");
+			expectedEmployee.setFullName("Dummy Admin");
+			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("Indonesia");
 			expectedEmployee.setDomicileAddress("Indonesia");
 			expectedEmployee.setPhoneNumber("62");
@@ -249,16 +291,16 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(8)
+	@Order(10)
 	@Rollback(value = false)
 	void NewAdminWithEmptyPassword() throws Exception {
 		Throwable e = null;
@@ -268,8 +310,8 @@ public class EmployeeTests {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId(101);
 			expectedEmployee.setRoleId(1);
-			expectedEmployee.setFullName("Dummy Employee");
-			expectedEmployee.setBirthDate("05-11-00");
+			expectedEmployee.setFullName("Dummy Admin");
+			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("Indonesia");
 			expectedEmployee.setDomicileAddress("Indonesia");
 			expectedEmployee.setPhoneNumber("62");
@@ -279,23 +321,23 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(9)
+	@Order(11)
 	@Rollback(value = false)
 	void NewEmployee() throws Exception {
 		Employee expectedEmployee = new Employee();
 		expectedEmployee.setEmployeeId(100);
 		expectedEmployee.setRoleId(2);
 		expectedEmployee.setFullName("Dummy Employee");
-		expectedEmployee.setBirthDate("05-11-00");
+		expectedEmployee.setBirthDate("05-11-2001");
 		expectedEmployee.setHomeAddress("Indonesia");
 		expectedEmployee.setDomicileAddress("Indonesia");
 		expectedEmployee.setPhoneNumber("62");
@@ -316,7 +358,45 @@ public class EmployeeTests {
 	}
 	
 	@Test
-	@Order(10)
+	@Order(12)
+	@Rollback(value = false)
+	@SuppressWarnings("null")
+	void NewEmployeeWithEmptyEmployeeId() throws NullPointerException {
+		Assertions.assertThrows(NullPointerException.class, () -> {
+			Employee expectedEmployee = new Employee();
+			expectedEmployee.setEmployeeId((Long) null);
+			expectedEmployee.setRoleId(1);
+			expectedEmployee.setFullName("");
+			expectedEmployee.setBirthDate("05-11-2001");
+			expectedEmployee.setHomeAddress("Indonesia");
+			expectedEmployee.setDomicileAddress("Indonesia");
+			expectedEmployee.setPhoneNumber("62");
+			expectedEmployee.setEmail("dummy.admin@bondo.com");
+			expectedEmployee.setPassword("password");
+		});
+	}
+	
+	@Test
+	@Order(13)
+	@Rollback(value = false)
+	@SuppressWarnings("null")
+	void NewEmployeeWithEmptyRoleId() throws NullPointerException {
+		Assertions.assertThrows(NullPointerException.class, () -> {
+			Employee expectedEmployee = new Employee();
+			expectedEmployee.setEmployeeId(2);
+			expectedEmployee.setRoleId((Integer) null);
+			expectedEmployee.setFullName("");
+			expectedEmployee.setBirthDate("05-11-2001");
+			expectedEmployee.setHomeAddress("Indonesia");
+			expectedEmployee.setDomicileAddress("Indonesia");
+			expectedEmployee.setPhoneNumber("62");
+			expectedEmployee.setEmail("dummy.admin@bondo.com");
+			expectedEmployee.setPassword("password");
+		});
+	}
+	
+	@Test
+	@Order(14)
 	@Rollback(value = false)
 	void NewEmployeeWithEmptyFullName() throws Exception {
 		Throwable e = null;
@@ -327,7 +407,7 @@ public class EmployeeTests {
 			expectedEmployee.setEmployeeId(100);
 			expectedEmployee.setRoleId(2);
 			expectedEmployee.setFullName("");
-			expectedEmployee.setBirthDate("05-11-00");
+			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("Indonesia");
 			expectedEmployee.setDomicileAddress("Indonesia");
 			expectedEmployee.setPhoneNumber("62");
@@ -337,16 +417,16 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(11)
+	@Order(15)
 	@Rollback(value = false)
 	void NewEmployeeWithEmptyBirthDate() throws Exception {
 		Throwable e = null;
@@ -367,27 +447,27 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(12)
+	@Order(16)
 	@Rollback(value = false)
 	void NeEmployeeWithEmptyHomeAddress() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
-		String actualMessage = "Birth date cannot be null!";
+		String actualMessage = "Home address cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId(100);
 			expectedEmployee.setRoleId(2);
 			expectedEmployee.setFullName("Dummy Employee");
-			expectedEmployee.setBirthDate("05-11-00");
+			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("");
 			expectedEmployee.setDomicileAddress("Indonesia");
 			expectedEmployee.setPhoneNumber("62");
@@ -397,23 +477,23 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(13)
+	@Order(17)
 	@Rollback(value = false)
 	void NewEmployeeWithEmptyDomicileAddress() throws Exception {
 		Employee expectedEmployee = new Employee();
 		expectedEmployee.setEmployeeId(100);
 		expectedEmployee.setRoleId(2);
 		expectedEmployee.setFullName("Dummy Employee");
-		expectedEmployee.setBirthDate("05-11-00");
+		expectedEmployee.setBirthDate("05-11-2001");
 		expectedEmployee.setHomeAddress("Indonesia");
 		expectedEmployee.setDomicileAddress("");
 		expectedEmployee.setPhoneNumber("62");
@@ -434,7 +514,7 @@ public class EmployeeTests {
 	}
 	
 	@Test
-	@Order(14)
+	@Order(18)
 	@Rollback(value = false)
 	void NewEmployeeWithEmptyPhoneNumber() throws Exception {
 		Throwable e = null;
@@ -445,7 +525,7 @@ public class EmployeeTests {
 			expectedEmployee.setEmployeeId(100);
 			expectedEmployee.setRoleId(2);
 			expectedEmployee.setFullName("Dummy Employee");
-			expectedEmployee.setBirthDate("05-11-00");
+			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("Indonesia");
 			expectedEmployee.setDomicileAddress("Indonesia");
 			expectedEmployee.setPhoneNumber("");
@@ -455,16 +535,16 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(15)
+	@Order(19)
 	@Rollback(value = false)
 	void NewEmployeeWithEmptyEmail() throws Exception {
 		Throwable e = null;
@@ -475,7 +555,7 @@ public class EmployeeTests {
 			expectedEmployee.setEmployeeId(100);
 			expectedEmployee.setRoleId(2);
 			expectedEmployee.setFullName("Dummy Employee");
-			expectedEmployee.setBirthDate("05-11-00");
+			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("Indonesia");
 			expectedEmployee.setDomicileAddress("Indonesia");
 			expectedEmployee.setPhoneNumber("62");
@@ -485,16 +565,16 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 	
 	@Test
-	@Order(16)
+	@Order(20)
 	@Rollback(value = false)
 	void NewEmployeeWithEmptyPassword() throws Exception {
 		Throwable e = null;
@@ -505,7 +585,7 @@ public class EmployeeTests {
 			expectedEmployee.setEmployeeId(100);
 			expectedEmployee.setRoleId(2);
 			expectedEmployee.setFullName("Dummy Employee");
-			expectedEmployee.setBirthDate("05-11-00");
+			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("Indonesia");
 			expectedEmployee.setDomicileAddress("Indonesia");
 			expectedEmployee.setPhoneNumber("62");
@@ -515,11 +595,11 @@ public class EmployeeTests {
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-		} catch (RuntimeException rex) {
-			e = rex;
-			expectedMessage = e.getMessage();
-		}
-		Assertions.assertTrue(e instanceof Exception);
-        Assertions.assertEquals(expectedMessage, actualMessage);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 }
