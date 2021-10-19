@@ -27,10 +27,114 @@ SOFTWARE.
 
 package com.bondopangaji.emsapp;
 
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.annotation.Rollback;
+
+import com.bondopangaji.emsapp.models.Role;
+import com.bondopangaji.emsapp.repositories.RoleRepository;
+import com.bondopangaji.emsapp.services.RoleService;
+
 /**
  * @author bondopangaji
  *
  */
-public class RoleTests {
 
+@DisplayName("Test case for Role object")
+@ExtendWith(MockitoExtension.class)
+public class RoleTests {
+	
+	@Mock
+    private RoleRepository roleRepository;
+	
+	@InjectMocks
+	private RoleService roleService;
+	
+	@Test
+	@Order(1)
+	@Rollback(value = false)
+	void NewRole() throws Exception {
+		Role expectedRole = new Role();
+		expectedRole.setRoleId(3);
+		expectedRole.setRoleTitle("Super Admin");
+		expectedRole.setRoleDescription("Admin with extended authority");
+				
+		when(roleRepository.save(expectedRole)).thenReturn(expectedRole);
+		roleService.storeData(expectedRole);
+		roleRepository.save(expectedRole);
+		
+		when(roleRepository.getById((long) 1)).thenReturn(expectedRole);
+		Role actualPayroll = this.roleRepository.getById((long) 1);
+		
+		Assertions.assertEquals(expectedRole, actualPayroll);
+	}
+	
+	@Test
+	@Order(2)
+	@Rollback(value = false)
+	@SuppressWarnings("null")
+	void NewRoleWithEmptyId() throws NullPointerException {
+		Assertions.assertThrows(NullPointerException.class, () -> {
+			Role expectedRole = new Role();
+			expectedRole.setRoleId((Long) null);
+			expectedRole.setRoleTitle("Super Admin");
+			expectedRole.setRoleDescription("Admin with extended authority");
+		});
+	}
+	
+	@Test
+	@Order(3)
+	@Rollback(value = false)
+	void NewRoleWithEmptyRoleTitle() throws Exception {
+		Throwable e = null;
+		String expectedMessage = null;
+		String actualMessage = "Role title cannot be null!";
+		try {
+			Role expectedRole = new Role();
+			expectedRole.setRoleId(3);
+			expectedRole.setRoleTitle("");
+			expectedRole.setRoleDescription("Admin with extended authority");
+			
+			when(roleRepository.save(expectedRole))
+				.thenThrow(new RuntimeException(actualMessage));
+			roleService.storeData(expectedRole);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
+	}
+	
+	@Test
+	@Order(4)
+	@Rollback(value = false)
+	void NewRoleWithEmptyRoleDescription() throws Exception {
+		Throwable e = null;
+		String expectedMessage = null;
+		String actualMessage = "Role description cannot be null!";
+		try {
+			Role expectedRole = new Role();
+			expectedRole.setRoleId(3);
+			expectedRole.setRoleTitle("Super Admin");
+			expectedRole.setRoleDescription("");
+			
+			when(roleRepository.save(expectedRole))
+				.thenThrow(new RuntimeException(actualMessage));
+			roleService.storeData(expectedRole);
+			} catch (RuntimeException rex) {
+				e = rex;
+				expectedMessage = e.getMessage();
+			}
+			Assertions.assertTrue(e instanceof Exception);
+	        Assertions.assertEquals(expectedMessage, actualMessage);
+	}
 }
