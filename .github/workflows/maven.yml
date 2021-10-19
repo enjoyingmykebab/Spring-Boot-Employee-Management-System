@@ -26,6 +26,10 @@ jobs:
         
   build:
     needs: setup
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+      fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
     - name: Build with Maven
@@ -33,13 +37,21 @@ jobs:
   
   test:
     needs: build
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+      fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:   
     - name: Test with Maven
       run: mvn test 
   
   install:
-    needs: build
+    needs: test
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+      fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:   
     - name: Install with Maven
