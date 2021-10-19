@@ -50,4 +50,9 @@ public class RoleService implements RoleInterface {
 	public List<Role> getAll() {
 		return roleRepository.findAll();
 	}
+	
+	@Override
+	public void storeData(Role role) throws Exception {		              
+		this.roleRepository.save(role);
+	}
 }

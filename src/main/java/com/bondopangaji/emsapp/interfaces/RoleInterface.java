@@ -39,5 +39,6 @@ import com.bondopangaji.emsapp.models.Role;
 public interface RoleInterface {
 
 	List<Role> getAll();
+	void storeData(Role role) throws Exception;
 
 }
