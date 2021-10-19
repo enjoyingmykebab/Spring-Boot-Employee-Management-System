@@ -47,7 +47,6 @@ import com.bondopangaji.emsapp.services.EmployeeService;
  *
  */
 
-
 @DisplayName("Test case for Employee object")
 @ExtendWith(MockitoExtension.class)
 public class EmployeeTests {
@@ -92,7 +91,7 @@ public class EmployeeTests {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId((Long) null);
 			expectedEmployee.setRoleId(1);
-			expectedEmployee.setFullName("");
+			expectedEmployee.setFullName("Dummy Admin");
 			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("Indonesia");
 			expectedEmployee.setDomicileAddress("Indonesia");
@@ -111,7 +110,7 @@ public class EmployeeTests {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId(1);
 			expectedEmployee.setRoleId((Integer) null);
-			expectedEmployee.setFullName("");
+			expectedEmployee.setFullName("Dummy Admin");
 			expectedEmployee.setBirthDate("05-11-2001");
 			expectedEmployee.setHomeAddress("Indonesia");
 			expectedEmployee.setDomicileAddress("Indonesia");
@@ -187,7 +186,7 @@ public class EmployeeTests {
 	void NewAdmineWithEmptyHomeAddress() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
-		String actualMessage = "Birth date cannot be null!";
+		String actualMessage = "Home address cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId(101);
@@ -305,7 +304,7 @@ public class EmployeeTests {
 	void NewAdminWithEmptyPassword() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
-		String actualMessage = "Email cannot be null!";
+		String actualMessage = "Password cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId(101);
