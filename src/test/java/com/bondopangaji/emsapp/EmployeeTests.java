@@ -52,7 +52,7 @@ import com.bondopangaji.emsapp.services.EmployeeService;
 public class EmployeeTests {
 	
 	@Mock
-    private EmployeeRepository employeeRepository;
+	private EmployeeRepository employeeRepository;
 	
 	@InjectMocks
 	private EmployeeService employeeService;
