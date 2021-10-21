@@ -89,7 +89,8 @@ public class PayrollTests {
 
 		payrollService.storeData(expectedPayroll);
 		
-		when(payrollRepository.getById((long) 1)).thenReturn(expectedPayroll);
+		when(payrollRepository.getById((long) 1))
+			.thenReturn(expectedPayroll);
 		Payroll actualPayroll = this.payrollRepository.getById((long) 1);
 		
 		Assertions.assertEquals(expectedPayroll, actualPayroll);
