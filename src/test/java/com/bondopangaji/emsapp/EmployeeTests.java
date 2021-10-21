@@ -60,7 +60,7 @@ public class EmployeeTests {
 	@Test
 	@Order(1)
 	@Rollback(value = false)
-	void NewAdmin() throws Exception {
+	void testNewAdmin() throws Exception {
 		Employee expectedEmployee = new Employee();
 		expectedEmployee.setEmployeeId(101);
 		expectedEmployee.setRoleId(1);
@@ -72,10 +72,8 @@ public class EmployeeTests {
 		expectedEmployee.setEmail("dummy.admin@bondo.com");
 		expectedEmployee.setPassword("password");
 		
-		when(employeeRepository.save(expectedEmployee)).thenReturn(expectedEmployee);
 		employeeService.storeData(expectedEmployee);
-		employeeRepository.save(expectedEmployee);
-		
+
 		when(employeeRepository.findByEmail("dummy.admin@bondo.com")).thenReturn(expectedEmployee);
 		Employee actualEmployee = this.employeeRepository.findByEmail("dummy.admin@bondo.com");
 		
@@ -86,7 +84,7 @@ public class EmployeeTests {
 	@Order(2)
 	@Rollback(value = false)
 	@SuppressWarnings("null")
-	void NewAdminWithEmptyEmployeeId() throws NullPointerException {
+	void testNewAdminWithEmptyEmployeeId() throws NullPointerException {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId((Long) null);
@@ -105,7 +103,7 @@ public class EmployeeTests {
 	@Order(3)
 	@Rollback(value = false)
 	@SuppressWarnings("null")
-	void NewAdminWithEmptyRoleId() throws NullPointerException {
+	void testNewAdminWithEmptyRoleId() throws NullPointerException {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId(1);
@@ -123,7 +121,7 @@ public class EmployeeTests {
 	@Test
 	@Order(4)
 	@Rollback(value = false)
-	void NewAdminWithEmptyFullName() throws Exception {
+	void testNewAdminWithEmptyFullName() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Full name cannot be null!";
@@ -153,7 +151,7 @@ public class EmployeeTests {
 	@Test
 	@Order(5)
 	@Rollback(value = false)
-	void NewAdminWithEmptyBirthDate() throws Exception {
+	void testNewAdminWithEmptyBirthDate() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Birth date cannot be null!";
@@ -183,7 +181,7 @@ public class EmployeeTests {
 	@Test
 	@Order(6)
 	@Rollback(value = false)
-	void NewAdmineWithEmptyHomeAddress() throws Exception {
+	void testNewAdminWithEmptyHomeAddress() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Home address cannot be null!";
@@ -213,7 +211,7 @@ public class EmployeeTests {
 	@Test
 	@Order(7)
 	@Rollback(value = false)
-	void NewAdminWithEmptyDomicileAddress() throws Exception {
+	void testNewAdminWithEmptyDomicileAddress() throws Exception {
 		Employee expectedEmployee = new Employee();
 		expectedEmployee.setEmployeeId(101);
 		expectedEmployee.setRoleId(1);
@@ -225,10 +223,7 @@ public class EmployeeTests {
 		expectedEmployee.setEmail("dummy.employee@bondo.com");
 		expectedEmployee.setPassword("password");
 		
-		when(employeeRepository.save(expectedEmployee))
-			.thenReturn(expectedEmployee);
 		employeeService.storeData(expectedEmployee);
-		employeeRepository.save(expectedEmployee);
 		
 		when(employeeRepository.findByEmail("dummy.employee@bondo.com"))
 			.thenReturn(expectedEmployee);
@@ -241,7 +236,7 @@ public class EmployeeTests {
 	@Test
 	@Order(8)
 	@Rollback(value = false)
-	void NewAdminWithEmptyPhoneNumber() throws Exception {
+	void testNewAdminWithEmptyPhoneNumber() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Phone number cannot be null!";
@@ -271,7 +266,7 @@ public class EmployeeTests {
 	@Test
 	@Order(9)
 	@Rollback(value = false)
-	void NewAdminWithEmptyEmail() throws Exception {
+	void testNewAdminWithEmptyEmail() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Email cannot be null!";
@@ -301,7 +296,7 @@ public class EmployeeTests {
 	@Test
 	@Order(10)
 	@Rollback(value = false)
-	void NewAdminWithEmptyPassword() throws Exception {
+	void testNewAdminWithEmptyPassword() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Password cannot be null!";
@@ -331,7 +326,7 @@ public class EmployeeTests {
 	@Test
 	@Order(11)
 	@Rollback(value = false)
-	void NewEmployee() throws Exception {
+	void testNewEmployee() throws Exception {
 		Employee expectedEmployee = new Employee();
 		expectedEmployee.setEmployeeId(100);
 		expectedEmployee.setRoleId(2);
@@ -342,11 +337,8 @@ public class EmployeeTests {
 		expectedEmployee.setPhoneNumber("62");
 		expectedEmployee.setEmail("dummy.employee@bondo.com");
 		expectedEmployee.setPassword("password");
-		
-		when(employeeRepository.save(expectedEmployee))
-			.thenReturn(expectedEmployee);
+
 		employeeService.storeData(expectedEmployee);
-		employeeRepository.save(expectedEmployee);
 		
 		when(employeeRepository.findByEmail("dummy.employee@bondo.com"))
 			.thenReturn(expectedEmployee);
@@ -360,7 +352,7 @@ public class EmployeeTests {
 	@Order(12)
 	@Rollback(value = false)
 	@SuppressWarnings("null")
-	void NewEmployeeWithEmptyEmployeeId() throws NullPointerException {
+	void testNewEmployeeWithEmptyEmployeeId() throws NullPointerException {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId((Long) null);
@@ -379,7 +371,7 @@ public class EmployeeTests {
 	@Order(13)
 	@Rollback(value = false)
 	@SuppressWarnings("null")
-	void NewEmployeeWithEmptyRoleId() throws NullPointerException {
+	void testNewEmployeeWithEmptyRoleId() throws NullPointerException {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId(2);
@@ -397,7 +389,7 @@ public class EmployeeTests {
 	@Test
 	@Order(14)
 	@Rollback(value = false)
-	void NewEmployeeWithEmptyFullName() throws Exception {
+	void testNewEmployeeWithEmptyFullName() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Full name cannot be null!";
@@ -427,7 +419,7 @@ public class EmployeeTests {
 	@Test
 	@Order(15)
 	@Rollback(value = false)
-	void NewEmployeeWithEmptyBirthDate() throws Exception {
+	void testNewEmployeeWithEmptyBirthDate() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Birth date cannot be null!";
@@ -457,7 +449,7 @@ public class EmployeeTests {
 	@Test
 	@Order(16)
 	@Rollback(value = false)
-	void NeEmployeeWithEmptyHomeAddress() throws Exception {
+	void testNewEmployeeWithEmptyHomeAddress() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Home address cannot be null!";
@@ -487,7 +479,7 @@ public class EmployeeTests {
 	@Test
 	@Order(17)
 	@Rollback(value = false)
-	void NewEmployeeWithEmptyDomicileAddress() throws Exception {
+	void testNewEmployeeWithEmptyDomicileAddress() throws Exception {
 		Employee expectedEmployee = new Employee();
 		expectedEmployee.setEmployeeId(100);
 		expectedEmployee.setRoleId(2);
@@ -499,10 +491,7 @@ public class EmployeeTests {
 		expectedEmployee.setEmail("dummy.employee@bondo.com");
 		expectedEmployee.setPassword("password");
 		
-		when(employeeRepository.save(expectedEmployee))
-			.thenReturn(expectedEmployee);
 		employeeService.storeData(expectedEmployee);
-		employeeRepository.save(expectedEmployee);
 		
 		when(employeeRepository.findByEmail("dummy.employee@bondo.com"))
 			.thenReturn(expectedEmployee);
@@ -515,7 +504,7 @@ public class EmployeeTests {
 	@Test
 	@Order(18)
 	@Rollback(value = false)
-	void NewEmployeeWithEmptyPhoneNumber() throws Exception {
+	void testNewEmployeeWithEmptyPhoneNumber() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Phone number cannot be null!";
@@ -545,7 +534,7 @@ public class EmployeeTests {
 	@Test
 	@Order(19)
 	@Rollback(value = false)
-	void NewEmployeeWithEmptyEmail() throws Exception {
+	void testNewEmployeeWithEmptyEmail() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Email cannot be null!";
@@ -575,10 +564,10 @@ public class EmployeeTests {
 	@Test
 	@Order(20)
 	@Rollback(value = false)
-	void NewEmployeeWithEmptyPassword() throws Exception {
+	void testNewEmployeeWithEmptyPassword() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
-		String actualMessage = "Email cannot be null!";
+		String actualMessage = "Password cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
 			expectedEmployee.setEmployeeId(100);
