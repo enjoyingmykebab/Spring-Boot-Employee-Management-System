@@ -24,7 +24,6 @@ SOFTWARE.
 
 **/
 
-
 package com.bondopangaji.emsapp;
 
 import static org.mockito.Mockito.when;
@@ -51,13 +50,13 @@ import com.bondopangaji.emsapp.services.RoleService;
 @DisplayName("Test case for Role object")
 @ExtendWith(MockitoExtension.class)
 public class RoleTests {
-	
+
 	@Mock
 	private RoleRepository roleRepository;
-	
+
 	@InjectMocks
 	private RoleService roleService;
-	
+
 	@Test
 	@Order(1)
 	@Rollback(value = false)
@@ -66,15 +65,15 @@ public class RoleTests {
 		expectedRole.setRoleId(3);
 		expectedRole.setRoleTitle("Super Admin");
 		expectedRole.setRoleDescription("Admin with extended authority");
-				
+
 		roleService.storeData(expectedRole);
-		
+
 		when(roleRepository.getById((long) 1)).thenReturn(expectedRole);
 		Role actualPayroll = this.roleRepository.getById((long) 1);
-		
+
 		Assertions.assertEquals(expectedRole, actualPayroll);
 	}
-	
+
 	@Test
 	@Order(2)
 	@Rollback(value = false)
@@ -87,7 +86,7 @@ public class RoleTests {
 			expectedRole.setRoleDescription("Admin with extended authority");
 		});
 	}
-	
+
 	@Test
 	@Order(3)
 	@Rollback(value = false)
@@ -100,18 +99,18 @@ public class RoleTests {
 			expectedRole.setRoleId(3);
 			expectedRole.setRoleTitle("");
 			expectedRole.setRoleDescription("Admin with extended authority");
-			
+
 			when(roleRepository.save(expectedRole))
 				.thenThrow(new RuntimeException(actualMessage));
 			roleService.storeData(expectedRole);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(4)
 	@Rollback(value = false)
@@ -124,15 +123,15 @@ public class RoleTests {
 			expectedRole.setRoleId(3);
 			expectedRole.setRoleTitle("Super Admin");
 			expectedRole.setRoleDescription("");
-			
+
 			when(roleRepository.save(expectedRole))
 				.thenThrow(new RuntimeException(actualMessage));
 			roleService.storeData(expectedRole);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 }

@@ -60,7 +60,7 @@ public class PayrollTests {
 	private PayrollService payrollService;
 
 	Employee employee = new Employee();
-	
+
 	@BeforeEach
 	void setUpEmployeeObject() {
 		employee.setEmployeeId(101);
@@ -73,7 +73,7 @@ public class PayrollTests {
 		employee.setEmail("dummy.admin@bondopangji.com");
 		employee.setPassword("password");
 	}
-	
+
 	@Test
 	@Order(1)
 	@Rollback(value = false)
@@ -88,14 +88,14 @@ public class PayrollTests {
 		expectedPayroll.setNetSalary(1710);
 
 		payrollService.storeData(expectedPayroll);
-		
+
 		when(payrollRepository.getById((long) 1))
 			.thenReturn(expectedPayroll);
 		Payroll actualPayroll = this.payrollRepository.getById((long) 1);
-		
+
 		Assertions.assertEquals(expectedPayroll, actualPayroll);
 	}
-	
+
 	@Test
 	@Order(2)
 	@Rollback(value = false)
@@ -109,10 +109,10 @@ public class PayrollTests {
 			expectedPayroll.setHourlyRate((Long) null);
 			expectedPayroll.setAnnualSalary(1800);
 			expectedPayroll.setTax(5);
-			expectedPayroll.setNetSalary(1710);	    
+			expectedPayroll.setNetSalary(1710);
 		});
 	}
-	
+
 	@Test
 	@Order(3)
 	@Rollback(value = false)
@@ -120,7 +120,7 @@ public class PayrollTests {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Employee cannot be null!";
-		
+
 		try {
 			Payroll expectedPayroll = new Payroll();
 			expectedPayroll.setPayrollId(1);
@@ -130,18 +130,18 @@ public class PayrollTests {
 			expectedPayroll.setAnnualSalary(1800);
 			expectedPayroll.setTax(5);
 			expectedPayroll.setNetSalary(1710);
-	
+
 			when(payrollRepository.save(expectedPayroll))
 				.thenThrow(new RuntimeException(actualMessage));
 			payrollService.storeData(expectedPayroll);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-			Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(4)
 	@Rollback(value = false)
@@ -149,7 +149,7 @@ public class PayrollTests {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Payroll date cannot be null!";
-		
+
 		try {
 			Payroll expectedPayroll = new Payroll();
 			expectedPayroll.setPayrollId(1);
@@ -159,18 +159,18 @@ public class PayrollTests {
 			expectedPayroll.setAnnualSalary(1800);
 			expectedPayroll.setTax(5);
 			expectedPayroll.setNetSalary(1710);
-	
+
 			when(payrollRepository.save(expectedPayroll))
 				.thenThrow(new RuntimeException(actualMessage));
 			payrollService.storeData(expectedPayroll);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-			Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(5)
 	@Rollback(value = false)
@@ -184,10 +184,10 @@ public class PayrollTests {
 			expectedPayroll.setHourlyRate((Long) null);
 			expectedPayroll.setAnnualSalary(1800);
 			expectedPayroll.setTax(5);
-			expectedPayroll.setNetSalary(1710);	    
+			expectedPayroll.setNetSalary(1710);
 		});
 	}
-	
+
 	@Test
 	@Order(6)
 	@Rollback(value = false)
@@ -201,10 +201,10 @@ public class PayrollTests {
 			expectedPayroll.setHourlyRate(5);
 			expectedPayroll.setAnnualSalary((Long) null);
 			expectedPayroll.setTax(5);
-			expectedPayroll.setNetSalary(1710);	    
+			expectedPayroll.setNetSalary(1710);
 		});
 	}
-	
+
 	@Test
 	@Order(7)
 	@Rollback(value = false)
@@ -218,10 +218,10 @@ public class PayrollTests {
 			expectedPayroll.setHourlyRate(5);
 			expectedPayroll.setAnnualSalary(1800);
 			expectedPayroll.setTax((Integer) null);
-			expectedPayroll.setNetSalary(1710);	    
+			expectedPayroll.setNetSalary(1710);
 		});
 	}
-	
+
 	@Test
 	@Order(8)
 	@Rollback(value = false)
@@ -235,8 +235,8 @@ public class PayrollTests {
 			expectedPayroll.setHourlyRate(5);
 			expectedPayroll.setAnnualSalary(1800);
 			expectedPayroll.setTax(5);
-			expectedPayroll.setNetSalary((Integer) null);	    
+			expectedPayroll.setNetSalary((Integer) null);
 		});
 	}
-	
+
 }

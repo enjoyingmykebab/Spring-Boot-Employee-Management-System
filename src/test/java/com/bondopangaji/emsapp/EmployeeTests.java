@@ -50,13 +50,13 @@ import com.bondopangaji.emsapp.services.EmployeeService;
 @DisplayName("Test case for Employee object")
 @ExtendWith(MockitoExtension.class)
 public class EmployeeTests {
-	
+
 	@Mock
 	private EmployeeRepository employeeRepository;
-	
+
 	@InjectMocks
 	private EmployeeService employeeService;
-	
+
 	@Test
 	@Order(1)
 	@Rollback(value = false)
@@ -71,17 +71,17 @@ public class EmployeeTests {
 		expectedEmployee.setPhoneNumber("62");
 		expectedEmployee.setEmail("dummy.admin@bondo.com");
 		expectedEmployee.setPassword("password");
-		
+
 		employeeService.storeData(expectedEmployee);
 
 		when(employeeRepository.findByEmail("dummy.admin@bondo.com"))
 			.thenReturn(expectedEmployee);
 		Employee actualEmployee = this.employeeRepository
 				.findByEmail("dummy.admin@bondo.com");
-		
+
 		Assertions.assertEquals(expectedEmployee, actualEmployee);
 	}
-	
+
 	@Test
 	@Order(2)
 	@Rollback(value = false)
@@ -100,7 +100,7 @@ public class EmployeeTests {
 			expectedEmployee.setPassword("password");
 		});
 	}
-	
+
 	@Test
 	@Order(3)
 	@Rollback(value = false)
@@ -119,7 +119,7 @@ public class EmployeeTests {
 			expectedEmployee.setPassword("password");
 		});
 	}
-	
+
 	@Test
 	@Order(4)
 	@Rollback(value = false)
@@ -138,18 +138,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("62");
 			expectedEmployee.setEmail("dummy.admin@bondo.com");
 			expectedEmployee.setPassword("password");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(5)
 	@Rollback(value = false)
@@ -168,18 +168,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("62");
 			expectedEmployee.setEmail("dummy.admin@bondo.com");
 			expectedEmployee.setPassword("password");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(6)
 	@Rollback(value = false)
@@ -198,18 +198,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("62");
 			expectedEmployee.setEmail("dummy.admin@bondo.com");
 			expectedEmployee.setPassword("password");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(7)
 	@Rollback(value = false)
@@ -224,17 +224,17 @@ public class EmployeeTests {
 		expectedEmployee.setPhoneNumber("62");
 		expectedEmployee.setEmail("dummy.employee@bondo.com");
 		expectedEmployee.setPassword("password");
-		
+
 		employeeService.storeData(expectedEmployee);
-		
+
 		when(employeeRepository.findByEmail("dummy.employee@bondo.com"))
 			.thenReturn(expectedEmployee);
 		Employee actualEmployee = this.employeeRepository
-					.findByEmail("dummy.employee@bondo.com");
-		
+				.findByEmail("dummy.employee@bondo.com");
+
 		Assertions.assertEquals(expectedEmployee, actualEmployee);
 	}
-	
+
 	@Test
 	@Order(8)
 	@Rollback(value = false)
@@ -253,18 +253,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("");
 			expectedEmployee.setEmail("dummy.employee@bondo.com");
 			expectedEmployee.setPassword("password");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(9)
 	@Rollback(value = false)
@@ -283,18 +283,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("62");
 			expectedEmployee.setEmail("");
 			expectedEmployee.setPassword("password");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(10)
 	@Rollback(value = false)
@@ -313,18 +313,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("62");
 			expectedEmployee.setEmail("dummy.employee@bondo.com");
 			expectedEmployee.setPassword("");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(11)
 	@Rollback(value = false)
@@ -341,15 +341,15 @@ public class EmployeeTests {
 		expectedEmployee.setPassword("password");
 
 		employeeService.storeData(expectedEmployee);
-		
+
 		when(employeeRepository.findByEmail("dummy.employee@bondo.com"))
 			.thenReturn(expectedEmployee);
 		Employee actualEmployee = this.employeeRepository
 					.findByEmail("dummy.employee@bondo.com");
-		
+
 		Assertions.assertEquals(expectedEmployee, actualEmployee);
 	}
-	
+
 	@Test
 	@Order(12)
 	@Rollback(value = false)
@@ -368,7 +368,7 @@ public class EmployeeTests {
 			expectedEmployee.setPassword("password");
 		});
 	}
-	
+
 	@Test
 	@Order(13)
 	@Rollback(value = false)
@@ -387,7 +387,7 @@ public class EmployeeTests {
 			expectedEmployee.setPassword("password");
 		});
 	}
-	
+
 	@Test
 	@Order(14)
 	@Rollback(value = false)
@@ -406,18 +406,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("62");
 			expectedEmployee.setEmail("dummy.employee@bondo.com");
 			expectedEmployee.setPassword("password");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(15)
 	@Rollback(value = false)
@@ -436,18 +436,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("62");
 			expectedEmployee.setEmail("dummy.employee@bondo.com");
 			expectedEmployee.setPassword("password");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(16)
 	@Rollback(value = false)
@@ -466,18 +466,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("62");
 			expectedEmployee.setEmail("dummy.employee@bondo.com");
 			expectedEmployee.setPassword("password");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(17)
 	@Rollback(value = false)
@@ -492,17 +492,17 @@ public class EmployeeTests {
 		expectedEmployee.setPhoneNumber("62");
 		expectedEmployee.setEmail("dummy.employee@bondo.com");
 		expectedEmployee.setPassword("password");
-		
+
 		employeeService.storeData(expectedEmployee);
-		
+
 		when(employeeRepository.findByEmail("dummy.employee@bondo.com"))
 			.thenReturn(expectedEmployee);
 		Employee actualEmployee = this.employeeRepository
-					.findByEmail("dummy.employee@bondo.com");
-		
+				.findByEmail("dummy.employee@bondo.com");
+
 		Assertions.assertEquals(expectedEmployee, actualEmployee);
 	}
-	
+
 	@Test
 	@Order(18)
 	@Rollback(value = false)
@@ -521,18 +521,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("");
 			expectedEmployee.setEmail("dummy.employee@bondo.com");
 			expectedEmployee.setPassword("password");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(19)
 	@Rollback(value = false)
@@ -551,18 +551,18 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("62");
 			expectedEmployee.setEmail("");
 			expectedEmployee.setPassword("password");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
-	
+
 	@Test
 	@Order(20)
 	@Rollback(value = false)
@@ -581,15 +581,15 @@ public class EmployeeTests {
 			expectedEmployee.setPhoneNumber("62");
 			expectedEmployee.setEmail("dummy.employee@bondo.com");
 			expectedEmployee.setPassword("");
-			
+
 			when(employeeRepository.save(expectedEmployee))
 				.thenThrow(new RuntimeException(actualMessage));
 			employeeService.storeData(expectedEmployee);
-			} catch (RuntimeException rex) {
-				e = rex;
-				expectedMessage = e.getMessage();
-			}
-			Assertions.assertTrue(e instanceof Exception);
-	        Assertions.assertEquals(expectedMessage, actualMessage);
+		} catch (RuntimeException rex) {
+			e = rex;
+			expectedMessage = e.getMessage();
+		}
+		Assertions.assertTrue(e instanceof Exception);
+		Assertions.assertEquals(expectedMessage, actualMessage);
 	}
 }
