@@ -74,8 +74,10 @@ public class EmployeeTests {
 		
 		employeeService.storeData(expectedEmployee);
 
-		when(employeeRepository.findByEmail("dummy.admin@bondo.com")).thenReturn(expectedEmployee);
-		Employee actualEmployee = this.employeeRepository.findByEmail("dummy.admin@bondo.com");
+		when(employeeRepository.findByEmail("dummy.admin@bondo.com"))
+			.thenReturn(expectedEmployee);
+		Employee actualEmployee = this.employeeRepository
+				.findByEmail("dummy.admin@bondo.com");
 		
 		Assertions.assertEquals(expectedEmployee, actualEmployee);
 	}
