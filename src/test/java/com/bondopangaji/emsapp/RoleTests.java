@@ -61,7 +61,7 @@ public class RoleTests {
 	@Test
 	@Order(1)
 	@Rollback(value = false)
-	void NewRole() throws Exception {
+	void testNewRole() throws Exception {
 		Role expectedRole = new Role();
 		expectedRole.setRoleId(3);
 		expectedRole.setRoleTitle("Super Admin");
@@ -81,7 +81,7 @@ public class RoleTests {
 	@Order(2)
 	@Rollback(value = false)
 	@SuppressWarnings("null")
-	void NewRoleWithEmptyId() throws NullPointerException {
+	void testNewRoleWithEmptyRoleId() throws NullPointerException {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Role expectedRole = new Role();
 			expectedRole.setRoleId((Long) null);
@@ -93,7 +93,7 @@ public class RoleTests {
 	@Test
 	@Order(3)
 	@Rollback(value = false)
-	void NewRoleWithEmptyRoleTitle() throws Exception {
+	void testNewRoleWithEmptyRoleTitle() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Role title cannot be null!";
@@ -117,7 +117,7 @@ public class RoleTests {
 	@Test
 	@Order(4)
 	@Rollback(value = false)
-	void NewRoleWithEmptyRoleDescription() throws Exception {
+	void testNewRoleWithEmptyRoleDescription() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Role description cannot be null!";
