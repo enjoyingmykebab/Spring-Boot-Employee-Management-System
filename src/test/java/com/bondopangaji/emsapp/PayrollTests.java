@@ -62,7 +62,7 @@ public class PayrollTests {
 	Employee employee = new Employee();
 	
 	@BeforeEach
-	void SetUpEmployeeObject() {
+	void setUpEmployeeObject() {
 		employee.setEmployeeId(101);
 		employee.setRoleId(2);
 		employee.setFullName("Dummy Employee");
@@ -77,7 +77,7 @@ public class PayrollTests {
 	@Test
 	@Order(1)
 	@Rollback(value = false)
-	void NewPayroll() throws Exception {
+	void testNewPayroll() throws Exception {
 		Payroll expectedPayroll = new Payroll();
 		expectedPayroll.setPayrollId(1);
 		expectedPayroll.setEmployee(employee);
@@ -87,9 +87,7 @@ public class PayrollTests {
 		expectedPayroll.setTax(5);
 		expectedPayroll.setNetSalary(1710);
 
-		when(payrollRepository.save(expectedPayroll)).thenReturn(expectedPayroll);
 		payrollService.storeData(expectedPayroll);
-		payrollRepository.save(expectedPayroll);
 		
 		when(payrollRepository.getById((long) 1)).thenReturn(expectedPayroll);
 		Payroll actualPayroll = this.payrollRepository.getById((long) 1);
@@ -100,7 +98,7 @@ public class PayrollTests {
 	@Test
 	@Order(2)
 	@Rollback(value = false)
-	void NewPayrollWithEmptyEmployee() throws Exception {
+	void testNewPayrollWithEmptyEmployee() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Employee cannot be null!";
@@ -129,7 +127,7 @@ public class PayrollTests {
 	@Test
 	@Order(3)
 	@Rollback(value = false)
-	void NewPayrollWithEmptyPayrollDate() throws Exception {
+	void testNewPayrollWithEmptyPayrollDate() throws Exception {
 		Throwable e = null;
 		String expectedMessage = null;
 		String actualMessage = "Payroll date cannot be null!";
@@ -159,7 +157,7 @@ public class PayrollTests {
 	@Order(4)
 	@Rollback(value = false)
 	@SuppressWarnings("null")
-	void NewPayrollWithEmptyHourlyRate() throws NullPointerException {
+	void testNewPayrollWithEmptyHourlyRate() throws NullPointerException {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Payroll expectedPayroll = new Payroll();
 			expectedPayroll.setPayrollId(1);
@@ -176,7 +174,7 @@ public class PayrollTests {
 	@Order(5)
 	@Rollback(value = false)
 	@SuppressWarnings("null")
-	void NewPayrollWithEmptyAnnualSalary() throws NullPointerException {
+	void testNewPayrollWithEmptyAnnualSalary() throws NullPointerException {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Payroll expectedPayroll = new Payroll();
 			expectedPayroll.setPayrollId(1);
@@ -193,7 +191,7 @@ public class PayrollTests {
 	@Order(6)
 	@Rollback(value = false)
 	@SuppressWarnings("null")
-	void NewPayrollWithEmptyTax() throws NullPointerException {
+	void testNewPayrollWithEmptyTax() throws NullPointerException {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Payroll expectedPayroll = new Payroll();
 			expectedPayroll.setPayrollId(1);
@@ -210,7 +208,7 @@ public class PayrollTests {
 	@Order(7)
 	@Rollback(value = false)
 	@SuppressWarnings("null")
-	void NewPayrollWithEmptyNetSalary() throws NullPointerException {
+	void testNewPayrollWithEmptyNetSalary() throws NullPointerException {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Payroll expectedPayroll = new Payroll();
 			expectedPayroll.setPayrollId(1);
