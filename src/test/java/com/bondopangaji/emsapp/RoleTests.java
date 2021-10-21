@@ -53,7 +53,7 @@ import com.bondopangaji.emsapp.services.RoleService;
 public class RoleTests {
 	
 	@Mock
-    private RoleRepository roleRepository;
+	private RoleRepository roleRepository;
 	
 	@InjectMocks
 	private RoleService roleService;
@@ -67,9 +67,7 @@ public class RoleTests {
 		expectedRole.setRoleTitle("Super Admin");
 		expectedRole.setRoleDescription("Admin with extended authority");
 				
-		when(roleRepository.save(expectedRole)).thenReturn(expectedRole);
 		roleService.storeData(expectedRole);
-		roleRepository.save(expectedRole);
 		
 		when(roleRepository.getById((long) 1)).thenReturn(expectedRole);
 		Role actualPayroll = this.roleRepository.getById((long) 1);
