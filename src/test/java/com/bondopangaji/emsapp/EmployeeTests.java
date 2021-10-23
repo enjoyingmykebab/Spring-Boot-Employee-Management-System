@@ -37,6 +37,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bondopangaji.emsapp.models.Employee;
 import com.bondopangaji.emsapp.repositories.EmployeeRepository;
@@ -49,6 +50,7 @@ import com.bondopangaji.emsapp.services.EmployeeService;
 
 @DisplayName("Test case for Employee object")
 @ExtendWith(MockitoExtension.class)
+@Transactional(rollbackFor = Exception.class)
 public class EmployeeTests {
 
 	@Mock
@@ -56,7 +58,10 @@ public class EmployeeTests {
 
 	@InjectMocks
 	private EmployeeService employeeService;
-
+	
+	Throwable e = null;
+	String expectedMessage = null;
+	
 	@Test
 	@Order(1)
 	@Rollback(value = false)
@@ -78,7 +83,7 @@ public class EmployeeTests {
 			.thenReturn(expectedEmployee);
 		Employee actualEmployee = this.employeeRepository
 				.findByEmail("dummy.admin@bondo.com");
-
+		
 		Assertions.assertEquals(expectedEmployee, actualEmployee);
 	}
 
@@ -124,8 +129,6 @@ public class EmployeeTests {
 	@Order(4)
 	@Rollback(value = false)
 	void testNewAdminWithEmptyFullName() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Full name cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
@@ -154,8 +157,6 @@ public class EmployeeTests {
 	@Order(5)
 	@Rollback(value = false)
 	void testNewAdminWithEmptyBirthDate() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Birth date cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
@@ -184,8 +185,6 @@ public class EmployeeTests {
 	@Order(6)
 	@Rollback(value = false)
 	void testNewAdminWithEmptyHomeAddress() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Home address cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
@@ -239,8 +238,6 @@ public class EmployeeTests {
 	@Order(8)
 	@Rollback(value = false)
 	void testNewAdminWithEmptyPhoneNumber() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Phone number cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
@@ -269,8 +266,6 @@ public class EmployeeTests {
 	@Order(9)
 	@Rollback(value = false)
 	void testNewAdminWithEmptyEmail() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Email cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
@@ -299,8 +294,6 @@ public class EmployeeTests {
 	@Order(10)
 	@Rollback(value = false)
 	void testNewAdminWithEmptyPassword() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Password cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
@@ -392,8 +385,6 @@ public class EmployeeTests {
 	@Order(14)
 	@Rollback(value = false)
 	void testNewEmployeeWithEmptyFullName() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Full name cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
@@ -452,8 +443,6 @@ public class EmployeeTests {
 	@Order(16)
 	@Rollback(value = false)
 	void testNewEmployeeWithEmptyHomeAddress() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Home address cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
@@ -507,8 +496,6 @@ public class EmployeeTests {
 	@Order(18)
 	@Rollback(value = false)
 	void testNewEmployeeWithEmptyPhoneNumber() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Phone number cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
@@ -537,8 +524,6 @@ public class EmployeeTests {
 	@Order(19)
 	@Rollback(value = false)
 	void testNewEmployeeWithEmptyEmail() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Email cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();
@@ -567,8 +552,6 @@ public class EmployeeTests {
 	@Order(20)
 	@Rollback(value = false)
 	void testNewEmployeeWithEmptyPassword() throws Exception {
-		Throwable e = null;
-		String expectedMessage = null;
 		String actualMessage = "Password cannot be null!";
 		try {
 			Employee expectedEmployee = new Employee();

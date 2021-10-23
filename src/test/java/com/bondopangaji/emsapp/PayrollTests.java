@@ -38,6 +38,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bondopangaji.emsapp.models.Employee;
 import com.bondopangaji.emsapp.models.Payroll;
@@ -51,6 +52,7 @@ import com.bondopangaji.emsapp.services.PayrollService;
 
 @DisplayName("Test case for Payroll object")
 @ExtendWith(MockitoExtension.class)
+@Transactional(rollbackFor = Exception.class)
 public class PayrollTests {
 
 	@Mock
@@ -70,7 +72,7 @@ public class PayrollTests {
 		employee.setHomeAddress("Indonesia");
 		employee.setDomicileAddress("Indonesia");
 		employee.setPhoneNumber("62");
-		employee.setEmail("dummy.admin@bondopangji.com");
+		employee.setEmail("dummy.employee@bondopangji.com");
 		employee.setPassword("password");
 	}
 

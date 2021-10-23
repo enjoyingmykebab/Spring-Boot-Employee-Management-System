@@ -37,6 +37,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bondopangaji.emsapp.models.Role;
 import com.bondopangaji.emsapp.repositories.RoleRepository;
@@ -49,6 +50,7 @@ import com.bondopangaji.emsapp.services.RoleService;
 
 @DisplayName("Test case for Role object")
 @ExtendWith(MockitoExtension.class)
+@Transactional(rollbackFor = Exception.class)
 public class RoleTests {
 
 	@Mock
