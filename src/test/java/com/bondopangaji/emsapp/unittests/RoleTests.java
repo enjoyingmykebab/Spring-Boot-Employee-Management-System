@@ -24,7 +24,7 @@ SOFTWARE.
 
 **/
 
-package com.bondopangaji.emsapp;
+package com.bondopangaji.emsapp.unittests;
 
 import static org.mockito.Mockito.when;
 
