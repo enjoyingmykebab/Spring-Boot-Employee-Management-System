@@ -28,6 +28,7 @@ package com.bondopangaji.emsapp.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bondopangaji.emsapp.models.Payroll;
 
@@ -37,6 +38,7 @@ import com.bondopangaji.emsapp.models.Payroll;
  */
 
 @Repository
+@Transactional(rollbackFor = Exception.class)
 public interface PayrollRepository extends JpaRepository<Payroll, Long> {
 
 }
