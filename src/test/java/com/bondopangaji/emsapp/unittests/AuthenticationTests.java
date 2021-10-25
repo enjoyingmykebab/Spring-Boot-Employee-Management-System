@@ -123,7 +123,7 @@ public class AuthenticationTests {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			String email = "dummy.admin@bondopangji.com";
 			Employee actualAdmin = employeeService.authEmail(email, null);
-			Assertions.assertEquals(expectedAdmin.getEmail(), actualAdmin.getEmail());
+			Assertions.assertEquals(expectedAdmin.getPassword(), actualAdmin.getPassword());
 		});
 	}
 
@@ -134,6 +134,7 @@ public class AuthenticationTests {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Employee actualAdmin = employeeService.authEmail(null, null);
 			Assertions.assertEquals(expectedAdmin.getEmail(), actualAdmin.getEmail());
+			Assertions.assertEquals(expectedAdmin.getPassword(), actualAdmin.getPassword());
 		});
 	}
 
@@ -166,7 +167,7 @@ public class AuthenticationTests {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			String email = "dummy.employee@bondopangji.com";
 			Employee actualEmployee = employeeService.authEmail(email, null);
-			Assertions.assertEquals(expectedEmployee.getEmail(), actualEmployee.getEmail());
+			Assertions.assertEquals(expectedEmployee.getPassword(), actualEmployee.getPassword());
 		});
 	}
 
@@ -177,6 +178,7 @@ public class AuthenticationTests {
 		Assertions.assertThrows(NullPointerException.class, () -> {
 			Employee actualEmployee = employeeService.authEmail(null, null);
 			Assertions.assertEquals(expectedEmployee.getEmail(), actualEmployee.getEmail());
+			Assertions.assertEquals(expectedEmployee.getPassword(), actualEmployee.getPassword());
 		});
 	}
 
