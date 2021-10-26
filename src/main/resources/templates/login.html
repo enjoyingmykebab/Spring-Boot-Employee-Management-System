@@ -45,11 +45,6 @@ THE SOFTWARE.
 			</div>
 			<div class="card-body">
 				<p class="login-box-msg">Sign in to start your session</p>
-				<div class="alert alert-danger alert-dismissible" th:if="${error}">
-                  <button th:if="${error}" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h5 th:if="${error}"><i class="icon fas fa-ban"></i> Alert!</h5>
-					<p th:text="${error}"></p>            
-                </div>
 				<form th:action="@{/login}" th:object="${employee}" method="post">
 					<div class="input-group mb-3">
 						<input th:field="*{email}" type="email" class="form-control" placeholder="Email">

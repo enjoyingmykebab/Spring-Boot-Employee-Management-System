@@ -75,7 +75,7 @@ public class AuthenticationTests {
 		expectedAdmin.setHomeAddress("Indonesia");
 		expectedAdmin.setDomicileAddress("Indonesia");
 		expectedAdmin.setPhoneNumber("62");
-		expectedEmployee.setEmail("dummy.admin@bondopangji.com");
+		expectedAdmin.setEmail("dummy.admin@bondopangji.com");
 		expectedAdmin.setPassword("password");
 		employeeService.storeData(expectedAdmin);
 	}
