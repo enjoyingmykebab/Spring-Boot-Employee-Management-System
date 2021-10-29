@@ -25,13 +25,13 @@ This project a number of technology to work properly
 
 ## Preview
 #### Login
-![Preview1](https://github.com/bondopangaji/Employee-Management-System-Spring-Boot/blob/main/preview/employee-mgmt-login.png?raw=true)
+![Preview1](https://github.com/bondopangaji/Spring-Boot-Employee-Management-System/blob/main/preview/employee-mgmt-login.png?raw=true)
 #### Admin Dashboard (Manage Employee)
-![Preview2](https://github.com/bondopangaji/Employee-Management-System-Spring-Boot/blob/main/preview/employee-mgmt-emp.png?raw=true)
+![Preview2](https://github.com/bondopangaji/Spring-Boot-Employee-Management-System/blob/main/preview/employee-mgmt-emp.png?raw=true)
 #### Admin Dashboard (Manage Payroll)
-![Preview1](https://github.com/bondopangaji/Employee-Management-System-Spring-Boot/blob/main/preview/employee-mgmt-payroll.png?raw=true)
+![Preview1](https://github.com/bondopangaji/Spring-Boot-Employee-Management-System/blob/main/preview/employee-mgmt-payroll.png?raw=true)
 #### Employee Dashboard (Invoice)
-![Preview1](https://github.com/bondopangaji/Employee-Management-System-Spring-Boot/blob/main/preview/employee-mgmt-invoice.png?raw=true)
+![Preview1](https://github.com/bondopangaji/Spring-Boot-Employee-Management-System/blob/main/preview/employee-mgmt-invoice.png?raw=true)
 
 ## Installation
 
