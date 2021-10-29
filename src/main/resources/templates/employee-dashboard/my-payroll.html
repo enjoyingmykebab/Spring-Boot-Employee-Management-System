@@ -81,7 +81,7 @@ THE SOFTWARE.
 											</tr>
 										</thead>
 										<tbody>
-											<tr th:each="payroll:${payrolls}">
+											<tr th:each="payroll:${list}">
 												<td th:text="${payroll.payrollId}"></td>
 												<td th:text="${payroll.employee.fullName}"></td>
 												<td th:text="${payroll.payrollDate}"></td>
