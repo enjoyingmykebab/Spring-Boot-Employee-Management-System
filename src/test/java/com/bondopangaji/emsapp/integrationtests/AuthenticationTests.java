@@ -26,67 +26,11 @@ SOFTWARE.
 
 package com.bondopangaji.emsapp.integrationtests;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import com.bondopangaji.emsapp.models.Employee;
-import com.bondopangaji.emsapp.repositories.EmployeeRepository;
-import com.bondopangaji.emsapp.services.EmployeeService;
-
-import net.bytebuddy.utility.RandomString;
-
 /**
  * @author bondopangaji
  *
  */
 
-@DisplayName("Test case for Login")
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
 public class AuthenticationTests {
-
-	@Autowired
-	private MockMvc mockMvc;
-
-	@Mock
-	private EmployeeRepository employeeRepository;
-
-	@InjectMocks
-	private EmployeeService employeeService;
-
-	@Test
-	public void testAdminLogin() throws Exception {
-		mockMvc.perform(get("/login")).andExpect(status().isOk())
-				.andExpect(content().string(containsString("Sign in to start your session")));
-
-		String email = RandomString.make(10).toLowerCase() + "@mail.com";
-		String password = RandomString.make(10).toLowerCase();
-
-		Employee employee = new Employee();
-		employee.setEmail(email);
-		employee.setPassword(password);
-
-		mockMvc.perform(post("/login").flashAttr("employee", employee))
-			.andExpect(status().is3xxRedirection())
-			.andExpect(MockMvcResultMatchers.redirectedUrl("/admin-dashboard"))
-			.andDo(print());
-	}
 
 }
